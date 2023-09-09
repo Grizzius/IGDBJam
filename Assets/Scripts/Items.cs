@@ -9,5 +9,7 @@ public class Items : ScriptableObject
     [TextArea]
     public string itemDescription;
     public Sprite sprite;
-    public Vector2Int size;
+    public Vector2 size;
+
+    public QuestTag[] tags;
 }

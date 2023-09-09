@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DragAndDrop : MonoBehaviour
@@ -7,19 +8,31 @@ public class DragAndDrop : MonoBehaviour
     public Items item;
 
     GameMode gamemode;
-    Collider2D itemCollider;
+    BoxCollider2D itemCollider;
     Vector3 mousePositionOffset;
     Vector3 dragStartPosition;
     SpriteRenderer spriteRenderer;
+    bool isDragging;
+    public bool inBagArea;
 
     int colliderCount;
 
     private void Start()
     {
         gamemode = FindObjectOfType<GameMode>();
-        itemCollider = GetComponent<Collider2D>();
+        itemCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = item.sprite;
+        itemCollider.size = item.size;
+    }
+
+    private void Update()
+    {
+        if (isDragging)
+        {
+            DragItem();
+        }
+        
     }
 
     private Vector3 GetMouseWorldPosition()
@@ -29,11 +42,46 @@ public class DragAndDrop : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (isDragging)
+        {
+            EndDrag();
+        }
+        else
+        {
+            StartDrag();
+        }
+        
+    }
+
+    public void StartDrag()
+    {
+        isDragging = true;
         mousePositionOffset = transform.position - GetMouseWorldPosition();
         dragStartPosition = transform.position;
     }
 
-    private void OnMouseDrag()
+    void EndDrag()
+    {
+        isDragging = false;
+        transform.position = new Vector3
+        {
+            x = transform.position.x,
+            y = transform.position.y,
+            z = 0
+        };
+
+        if (colliderCount > 0)
+        {
+            transform.position = dragStartPosition;
+        }
+
+        if (!inBagArea)
+        {
+            ReturnToInventory();
+        }
+    }
+
+    private void DragItem()
     {
         transform.position = new Vector3
         {
@@ -44,30 +92,23 @@ public class DragAndDrop : MonoBehaviour
         
     }
 
-    private void OnMouseUp()
-    {
-        transform.position = new Vector3
-        {
-            x = transform.position.x,
-            y = transform.position.y,
-            z = 0
-        };
-        Debug.Log(colliderCount);
-
-        if (colliderCount > 0)
-        {
-            transform.position = dragStartPosition;
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.transform.gameObject.layer == transform.gameObject.layer)
+        if (collision.transform.gameObject.layer == transform.gameObject.layer)
         {
-            Debug.Log(itemCollider.bounds.Intersects(collision.bounds));
             colliderCount++;
         }
-        
+        else if (collision.transform.gameObject.layer == 7)
+        {
+            inBagArea = true;
+        }
+    }
+
+    void ReturnToInventory()
+    {
+        gamemode.ModifyInventory(item, +1);
+        Destroy(gameObject);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -75,6 +116,10 @@ public class DragAndDrop : MonoBehaviour
         if (collision.transform.gameObject.layer == transform.gameObject.layer)
         {
             colliderCount--;
+        }
+        else if (collision.transform.gameObject.layer == 7)
+        {
+            inBagArea = false;
         }
     }
 }

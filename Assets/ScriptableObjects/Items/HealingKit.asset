@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: healing Kit
   itemDescription: Good as new, depending on the lighting !
-  sprite: {fileID: 0}
+  sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
+  size: {x: 0.9, y: 1.9}
+  tags: 0400000005000000

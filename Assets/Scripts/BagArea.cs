@@ -19,7 +19,6 @@ public class BagArea : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.GetComponent<DragAndDrop>());
         if(collision.gameObject.GetComponent<DragAndDrop>())
         {
             itemsList.Add(collision.gameObject.GetComponent<DragAndDrop>().item);
