@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 
 public class MainCanvas : MonoBehaviour
@@ -10,6 +12,8 @@ public class MainCanvas : MonoBehaviour
     List<itemButton> itemButtons = new();
     GameMode gameMode;
     public Transform buttonArea;
+    public TextMeshProUGUI questText;
+    public float textDelay;
 
     // Start is called before the first frame update
     void Start()
@@ -23,8 +27,33 @@ public class MainCanvas : MonoBehaviour
         
     }
 
+    public void UpdateQuestText(string newText)
+    {
+        StartCoroutine(TypeText(newText));
+    }
+
+    IEnumerator TypeText(string text)
+    {
+        questText.text = null;
+        foreach(char c in text.ToCharArray())
+        {
+            questText.text += c;
+            yield return new WaitForSeconds(textDelay);
+        }
+    }
+
+    public void OnPressSendButton()
+    {
+        gameMode.SendBag();
+    }
+
     public void GenerateButtonList()
     {
+        if(gameMode == null)
+        {
+            gameMode = FindObjectOfType<GameMode>();
+        }
+
         foreach(Items item in gameMode.guildInventory.Keys)
         {
             itemButton newButton = Instantiate(buttonTemplate, buttonArea);

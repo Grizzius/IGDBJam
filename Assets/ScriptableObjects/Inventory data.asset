@@ -28,3 +28,12 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 9648fdabe81d87e4d88b752521b279cf, type: 2}
     minimum: 10
     maximum: 20
+  - item: {fileID: 11400000, guid: 263bc407831635b42a9b33cf17f7c490, type: 2}
+    minimum: 1
+    maximum: 4
+  - item: {fileID: 11400000, guid: 2927ae048dce40d4b8798b35c4c49f28, type: 2}
+    minimum: 5
+    maximum: 10
+  - item: {fileID: 11400000, guid: f01275bef0dd4a74596a2fd23d193360, type: 2}
+    minimum: 4
+    maximum: 9

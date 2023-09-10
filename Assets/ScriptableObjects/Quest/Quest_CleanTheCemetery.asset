@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff08a44b6b481ab4086fef03d2305f77, type: 3}
-  m_Name: CemeteryQuest
+  m_Name: Quest_CleanTheCemetery
   m_EditorClassIdentifier: 
   textTemplateList:
   - '{1}, {2}'

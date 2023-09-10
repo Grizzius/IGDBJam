@@ -10,6 +10,7 @@ public class Items : ScriptableObject
     public string itemDescription;
     public Sprite sprite;
     public Vector2 size;
+    public float power;
 
     public QuestTag[] tags;
 }

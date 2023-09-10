@@ -15,6 +15,9 @@ public class DragAndDrop : MonoBehaviour
     bool isDragging;
     public bool inBagArea;
 
+    bool justCreated = true;
+    bool isBeingDestroyed = false;
+
     int colliderCount;
 
     private void Start()
@@ -73,12 +76,18 @@ public class DragAndDrop : MonoBehaviour
         if (colliderCount > 0)
         {
             transform.position = dragStartPosition;
+            if (justCreated)
+            {
+                ReturnToInventory();
+            }
         }
 
         if (!inBagArea)
         {
             ReturnToInventory();
         }
+
+        justCreated = false;
     }
 
     private void DragItem()
@@ -107,8 +116,13 @@ public class DragAndDrop : MonoBehaviour
 
     void ReturnToInventory()
     {
-        gamemode.ModifyInventory(item, +1);
-        Destroy(gameObject);
+        if (!isBeingDestroyed)
+        {
+            isBeingDestroyed = true;
+            gamemode.ModifyInventory(item, +1);
+            Destroy(gameObject);
+        }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)

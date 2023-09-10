@@ -28,4 +28,6 @@ public enum QuestTag
     LightDanger,
     MediumDanger,
     HeavyDanger,
+    Cold,
+    WeakToFire
 }
