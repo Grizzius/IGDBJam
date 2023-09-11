@@ -15,6 +15,9 @@ public class MainCanvas : MonoBehaviour
     public TextMeshProUGUI questText;
     public float textDelay;
 
+    public TextMeshProUGUI tooltipName;
+    public TextMeshProUGUI tooltipDescription;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -78,5 +81,11 @@ public class MainCanvas : MonoBehaviour
         DragAndDrop newItem = Instantiate(dragAndDropTemplate);
         newItem.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         newItem.StartDrag();
+    }
+
+    public void ChangeToolTip(string itemName, string itemDescription)
+    {
+        tooltipName.text = itemName;
+        tooltipDescription.text = itemDescription;
     }
 }

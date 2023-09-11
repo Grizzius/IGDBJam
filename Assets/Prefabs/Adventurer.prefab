@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9103607652525320447}
   - component: {fileID: 8954103951995886208}
   - component: {fileID: 1109331671293315408}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Adventurer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 5645922318903665188}
   - component: {fileID: 7692440038792001003}
   - component: {fileID: 2032773395246989250}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: eye (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +292,7 @@ GameObject:
   - component: {fileID: 6758515253804506785}
   - component: {fileID: 5346069417803076761}
   - component: {fileID: 1547992315655741527}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 8396966160039110629}
   - component: {fileID: 6219030597705694213}
   - component: {fileID: 4869823943795700939}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -503,7 +503,7 @@ GameObject:
   - component: {fileID: 6019037469310754290}
   - component: {fileID: 4233955991461588587}
   - component: {fileID: 6704382684325556697}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}

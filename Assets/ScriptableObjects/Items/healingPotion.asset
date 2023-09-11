@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Healing Potion
   itemDescription: Can make a difference between life or death. Cherry-flavored.
-  sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  sprite: {fileID: 21300000, guid: 28b98747802d2b34bb4337430a77ed5f, type: 3}
   size: {x: 0.9, y: 0.9}
+  power: 0
   tags: 040000000500000006000000

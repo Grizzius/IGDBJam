@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class itemButton : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class itemButton : MonoBehaviour
     public TextMeshProUGUI nameTextMesh;
     public TextMeshProUGUI countTextMesh;
     GameMode gameMode;
+    Button button;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +24,7 @@ public class itemButton : MonoBehaviour
     {
         mainCanvas = GetComponentInParent<MainCanvas>();
         gameMode = FindObjectOfType<GameMode>();
-
+        button = GetComponent<Button>();
         UpdateText();
     }
 
@@ -50,5 +54,15 @@ public class itemButton : MonoBehaviour
     int FindItemQuantity()
     {
         return gameMode.guildInventory[item];
+    }
+
+    public void StartHover()
+    {
+        mainCanvas.ChangeToolTip(item.itemName, item.itemDescription);
+    }
+
+    public void EndHover()
+    {
+        mainCanvas.ChangeToolTip("", "");
     }
 }
