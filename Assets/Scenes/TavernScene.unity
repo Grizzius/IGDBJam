@@ -2522,6 +2522,8 @@ MonoBehaviour:
   buttonArea: {fileID: 1602316233}
   questText: {fileID: 1031200637}
   textDelay: 0.01
+  tooltipName: {fileID: 0}
+  tooltipDescription: {fileID: 0}
 --- !u!114 &1806645909
 MonoBehaviour:
   m_ObjectHideFlags: 0
