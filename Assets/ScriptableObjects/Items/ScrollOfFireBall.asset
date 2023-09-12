@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: ScrollOfFireBall
   m_EditorClassIdentifier: 
   itemName: Scroll of fireball
-  itemDescription: 
+  itemDescription: 9 out of 10 wizards approve !
   sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
   size: {x: 0.9, y: 1.9}
+  power: 0
   tags: 08000000060000000500000004000000
