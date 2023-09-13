@@ -37,3 +37,6 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: f01275bef0dd4a74596a2fd23d193360, type: 2}
     minimum: 4
     maximum: 9
+  - item: {fileID: 11400000, guid: e478143458797e341b7e8903882a18ec, type: 2}
+    minimum: 4
+    maximum: 9

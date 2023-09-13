@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 290ea5103a29ada43a2c1ada2072116e, type: 3}
-  m_Name: ScrollOfFireBall
+  m_Name: Spear
   m_EditorClassIdentifier: 
-  itemName: Scroll of fireball
-  itemDescription: 9 out of 10 wizards approve !
-  sprite: {fileID: 21300000, guid: bbd961f833ce5da4d81172f3f56ed1ef, type: 3}
-  size: {x: 0.9, y: 0.9}
+  itemName: Spear
+  itemDescription: Haha, long stick go stab-stab
+  sprite: {fileID: 21300000, guid: b69321e286c892b42b2424fe3df33f7e, type: 3}
+  size: {x: 0.9, y: 3.9}
   power: 0
-  tags: 08000000060000000500000004000000
+  tags: 040000000500000000000000

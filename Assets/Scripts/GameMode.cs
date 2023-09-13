@@ -31,6 +31,14 @@ public class GameMode : MonoBehaviour
     public Transform bar;
     Adventurer currentAdventurer;
 
+    public int defaultTimer;
+    public int currentTimer;
+    public int questSuccessThreshold;
+    int dayCount = 0;
+    int score;
+
+    public List<QuestAndScore> questAndScores = new();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,15 +48,67 @@ public class GameMode : MonoBehaviour
         GenerateInventory();
 
         mainCanvas.GenerateButtonList();
-
-        ToggleInventory(false);
-        StartCoroutine(StartNewQuest());
+        mainCanvas.UpdateScoreCount(score);
+        StartNewDay();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void StartNewDay()
+    {
+        dayCount++;
+        questAndScores.Clear();
+        GenerateInventory();
+
+        mainCanvas.UpdateDayCount(dayCount);
+        mainCanvas.DisplaySummary(false);
+        ToggleInventory(false);
+        StartCoroutine(Timer(defaultTimer));
+        StartCoroutine(StartNewQuest());
+    }
+
+    IEnumerator Timer(int time)
+    {
+        currentTimer = time;
+        mainCanvas.UpdateTimer();
+
+        while (currentTimer > 0)
+        {
+            yield return new WaitForSeconds(1);
+            currentTimer--;
+            mainCanvas.UpdateTimer();
+        }
+        if(currentTimer <= 0)
+        {
+            if(currentAdventurer != null)
+            {
+                SendBag();
+                currentAdventurer.Leave(tavernDoor);
+            }
+            else
+            {
+                FinishDay();
+            }
+        }
+    }
+
+    void FinishDay()
+    {
+        mainCanvas.DisplaySummary(true);
+
+        foreach(QuestAndScore qands in questAndScores)
+        {
+            if(qands.score > questSuccessThreshold)
+            {
+                score += 100;
+            }
+        }
+
+        mainCanvas.UpdateScoreCount(score);
     }
 
     public void ModifyInventory(Items key, int value)
@@ -65,6 +125,8 @@ public class GameMode : MonoBehaviour
         {
             guildInventory.Add(itemRange.item, Random.Range(itemRange.minimum, itemRange.maximum));
         }
+
+        mainCanvas.UpdateAllButtons();
     }
 
     void GenerateQuest()
@@ -97,7 +159,14 @@ public class GameMode : MonoBehaviour
 
     public void SendBag()
     {
-        Debug.Log(EvaluateQuestSuccess());
+        QuestAndScore newScore = new()
+        {
+            quest = CurrentQuest,
+            score = EvaluateQuestSuccess()
+        };
+
+        questAndScores.Add(newScore);
+
         bag.Empty();
         ToggleInventory(false);
         currentAdventurer.Leave(tavernDoor);
@@ -120,7 +189,15 @@ public class GameMode : MonoBehaviour
     public void AdventurerLeavesTavern()
     {
         Destroy(currentAdventurer.gameObject);
-        StartCoroutine(StartNewQuest());
+        if(currentTimer > 3)
+        {
+            StartCoroutine(StartNewQuest());
+        }
+        else if(currentTimer <= 0)
+        {
+            FinishDay();
+        }
+        
     }
 
     void CreateAdventurer()
@@ -160,4 +237,10 @@ public class GameMode : MonoBehaviour
         dragAndDropCam.gameObject.SetActive(isOpen);
         inventoryUI.gameObject.SetActive(isOpen);
     }
+}
+
+public struct QuestAndScore
+{
+    public Quest quest;
+    public int score;
 }

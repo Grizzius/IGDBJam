@@ -17,6 +17,8 @@ public class Quest : ScriptableObject
     public string[] goalText;
 
     public QuestTag[] questTags;
+
+    public string summary;
 }
 
 public enum QuestTag

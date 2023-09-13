@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,16 +19,40 @@ public class MainCanvas : MonoBehaviour
     public TextMeshProUGUI tooltipName;
     public TextMeshProUGUI tooltipDescription;
 
+    public TextMeshProUGUI timerText;
+
+    public Transform summary;
+    public Transform summaryPanelSlot;
+    public SummaryPanel summaryTemplate;
+    public TextMeshProUGUI scoreCountText;
+    public TextMeshProUGUI dayCountText;
+
     // Start is called before the first frame update
     void Start()
     {
         gameMode = FindObjectOfType<GameMode>();
+        DisplaySummary(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void UpdateDayCount(int value)
+    {
+        dayCountText.text = $"Day {value}";
+    }
+
+    public void UpdateScoreCount(int value)
+    {
+        scoreCountText.text = $"Score : {value}";
+    }
+
+    public void UpdateTimer()
+    {
+        timerText.text = $"{gameMode.currentTimer} S";
     }
 
     public void UpdateQuestText(string newText)
@@ -87,5 +112,39 @@ public class MainCanvas : MonoBehaviour
     {
         tooltipName.text = itemName;
         tooltipDescription.text = itemDescription;
+    }
+
+    public void DisplaySummary(bool isDisplayed)
+    {
+        summary.gameObject.SetActive(isDisplayed);
+        if (isDisplayed)
+        {
+            CreateSummaryDisplays();
+        }
+        
+    }
+
+    public void OnContinueButtion()
+    {
+        gameMode.StartNewDay();
+    }
+
+    public void CreateSummaryDisplays()
+    {
+        for(int i = 0; i < summaryPanelSlot.childCount; i++)
+        {
+            Destroy(summaryPanelSlot.GetChild(i).gameObject);
+        }
+
+        foreach (QuestAndScore questAndScore in gameMode.questAndScores)
+        {
+            SummaryPanel newPanel = Instantiate(summaryTemplate, summaryPanelSlot);
+            bool success = false;
+            if(questAndScore.score > 300)
+            {
+                success = true;
+            }
+            newPanel.Initialize(success,questAndScore.quest);
+        }
     }
 }
