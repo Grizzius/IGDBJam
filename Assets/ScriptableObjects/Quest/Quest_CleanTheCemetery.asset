@@ -21,8 +21,8 @@ MonoBehaviour:
   - Sights of undeads have been reported neer the cemetery
   - Undead creatures have been scaring people away at the cemetery
   goalText:
-  - we're planning on cleaning up the place.
-  - someone's gotta take care of it.
-  - we have to purge the unholy !
+  - We're planning on cleaning up the place
+  - Someone's gotta take care of it.
+  - We have to purge the unholy!
   questTags: 000000000300000004000000
   summary: Went to eliminate undeads at the cemetery

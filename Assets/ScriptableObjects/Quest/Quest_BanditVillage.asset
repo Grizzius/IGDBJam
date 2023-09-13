@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff08a44b6b481ab4086fef03d2305f77, type: 3}
-  m_Name: Quest_HuntTheIceTroll
+  m_Name: Quest_BanditVillage
   m_EditorClassIdentifier: 
   textTemplateList:
   - '{1}, {2}'
   introText:
-  - An ice troll has been attacking merchants on the mountain pass
-  - The lady in the tavern told me the beer trader is late, an ice troll on the mountain
-    it seems
+  - The bandits have taken over a local village!
+  - Those bandits are up to no good again....
+  - Bloody bandits... I lost my family to their pillaging...
   goalText:
-  - Time to see what all the fuss is about!
-  - What could possibly go wrong?
-  - Hook me up boss! I'm ready!
-  questTags: 02000000050000000700000008000000
-  summary: Went to hunt an ice troll
+  - It's time to take back what's ours.
+  - The villagers need our help... It is not the time for messing around.
+  - Someone's gotta do something about them.
+  questTags: 010000000400000005000000
+  summary: Bandits are attacking the local village

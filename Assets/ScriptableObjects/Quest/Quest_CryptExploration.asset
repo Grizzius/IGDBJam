@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: Quest_CryptExploration
   m_EditorClassIdentifier: 
   textTemplateList:
-  - '{1}. {2}'
+  - '{1}, {2}'
   introText:
-  - We're headed toward a mysterious crypt
+  - We're headed towards a mysterious crypt...
+  - The undead are rising up from the crypt
+  - Father put me on this quest as my first one ever, A crypt? really!?
   goalText:
-  - who knows what treasures we will find ?
+  - Who knows what treasures we'll find!
+  - I hope the monsters aren't too scary...
+  - I've never been to a crypt before.... isn't that some kind of puzzle?
   questTags: 0000000003000000020000000400000005000000
   summary: Left town to explore a mysterious crypt
